@@ -83,7 +83,8 @@ dependencies {
         app:contentPath="<CONTENT_PATH>"
         app:gravity="center"
         app:textColor="@android:color/black"
-        app:textStyle="bold" 
+        app:textStyle="bold"
+
 
 //Other fields..
 

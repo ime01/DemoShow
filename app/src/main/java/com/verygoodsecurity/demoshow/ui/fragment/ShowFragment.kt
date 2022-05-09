@@ -23,11 +23,11 @@ class ShowFragment : Fragment(R.layout.show_layout), OnCardAliasChangeListener {
 
     private val show: VGSShow by lazy {
         VGSShow.Builder(requireContext(), MainActivity.TENANT_ID)
-            .setHostname(MainActivity.COLLECT_CUSTOM_HOSTNAME)
+            //.setHostname(MainActivity.COLLECT_CUSTOM_HOSTNAME)
             .build()
     }
 
-    private var cardNumberAlias: String = ""
+    var cardNumberAlias: String = "tok_sandbox_uo5G4dyX5n5ekNVnoM29Rq"
     private var expirationDateAlias: String = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +45,7 @@ class ShowFragment : Fragment(R.layout.show_layout), OnCardAliasChangeListener {
         show.addOnResponseListener(object : VGSOnResponseListener {
 
             override fun onResponse(response: VGSResponse) {
-                pbReveal?.setVisible(false)
+                pbReveal?.setVisible(true)
                 Log.d(CollectAndShowActivity::class.simpleName, response.toString())
             }
         })
@@ -57,6 +57,7 @@ class ShowFragment : Fragment(R.layout.show_layout), OnCardAliasChangeListener {
             "\$1-\$2-\$3-\$4"
         )
         tvCardNumber?.addTransformationRegex("-".toRegex(), " - ")
+
 
         tvCardNumber?.setOnTextChangeListener(object :
             VGSTextView.OnTextChangedListener {
@@ -78,11 +79,14 @@ class ShowFragment : Fragment(R.layout.show_layout), OnCardAliasChangeListener {
             tvCardNumber.copyToClipboard(VGSTextView.CopyTextFormat.RAW)
         }
         mbRequest?.setOnClickListener {
+            println("REVEAL BUTTON CLICKED")
+            Log.d("CLICKED", "REVEAL BUTTON CLICKED")
             pbReveal?.setVisible(true)
             show.requestAsync(
                 VGSRequest.Builder("post", VGSHttpMethod.POST).body(
                     mapOf(
                         "payment_card_number" to cardNumberAlias,
+                       // "tok_sandbox_uo5G4dyX5n5ekNVnoM29Rq" to cardNumberAlias,
                         "payment_card_expiration_date" to expirationDateAlias
                     )
                 ).build()

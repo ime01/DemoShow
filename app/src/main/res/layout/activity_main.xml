@@ -97,4 +97,29 @@
         app:rippleColor="@color/colorAccent"
         app:strokeColor="@color/colorPrimaryDark"
         tools:ignore="HardcodedText" />
+
+
+    <com.verygoodsecurity.vgsshow.widget.VGSTextView
+        android:id="@+id/infoField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPath="json.pan"
+        app:gravity="center"
+        app:textColor="@android:color/black"
+        app:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartRevelPDF"/>
+
+
+    <com.verygoodsecurity.vgsshow.widget.VGSTextView
+        android:id="@+id/infoField1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPath="json.expireDate"
+        app:gravity="center"
+        app:textColor="@android:color/black"
+        app:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoField"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
